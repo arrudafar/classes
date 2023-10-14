@@ -1,0 +1,565 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+<title>Homework 1</title>
+<meta name="generator" content="MATLAB 23.2">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.date" content="2023-10-13">
+<meta name="DC.source" content="hw1.m">
+<style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="content">
+<h1>Homework 1</h1>
+<!--introduction-->
+<!--/introduction-->
+<h2>Contents</h2>
+<div>
+<ul>
+<li>
+<a href="#1">Problem 1</a>
+</li>
+<li>
+<a href="#2">Problem 2a</a>
+</li>
+<li>
+<a href="#3">problem 2b</a>
+</li>
+<li>
+<a href="#4">problem 3</a>
+</li>
+</ul>
+</div>
+<h2 id="1">Problem 1</h2>
+<pre class="codeinput">
+<span class="comment">% https://github.com/arrudafar</span>
+</pre>
+<h2 id="2">Problem 2a</h2>
+<pre class="codeinput">
+<span class="comment">% tf=G*D/(1+G*D)</span>
+<span class="comment">% G = b/a and D = y/x and so tf= b*y/(a*x + b*y)</span>
+<span class="comment">% so we get a(s)*x(s)+b(s)*y(s)=f(s)</span>
+<span class="comment">% Gs = [(s+2)(s-2)(s+5)(s-5)]/[(s+1)(s-1)(s+3)(s-3)(s+6)(s-6)] =b/a</span>
+b=RR_poly([2 -2 5 -5],1)
+a=RR_poly([1 -1 3 -3 6 -6],1)
+<span class="comment">% our desired target for system using controller that puts poles at</span>
+<span class="comment">% s={-1,-1,-3,-3,-6,-6}</span>
+f0=RR_poly([-1 -1 -3 -3 -6 -6],1)
+[x0,y0] = RR_diophantine(a,b,f0)
+test0=trim(a*x0+b*y0)
+residual0=norm(f0-test0)
+<span class="comment">% by this solution we see the order of the x and y polys are:</span>
+<span class="comment">% x = 3 &lt; y = 5 making it so this solution is not proper and its</span>
+<span class="comment">% corresponding residual is at 1.13e-13.</span>
+</pre>
+<pre class="codeoutput">b = 
+  RR_poly with properties:
+poly:      1     0   -29     0   100
+roots:   -5.0000   -2.0000    2.0000    5.0000
+   n: 4
+a = 
+  RR_poly with properties:
+poly:      1     0   -46     0   369     0  -324
+roots:   -6.0000   -3.0000   -1.0000    1.0000    3.0000    6.0000
+   n: 6
+f0 = 
+  RR_poly with properties:
+poly:   Columns 1 through 6
+           1          20         154         576        1089         972
+  Column 7
+         324
+roots:  Columns 1 through 4
+  -6.0000 + 0.0000i  -6.0000 + 0.0000i  -3.0000 + 0.0000i  -3.0000 + 0.0000i
+  Columns 5 through 6
+  -1.0000 - 0.0000i  -1.0000 + 0.0000i
+   n: 6
+x0 = 
+  RR_poly with properties:
+poly:    -0.6710   -2.2869   10.1755   24.1641
+roots:   -5.0009   -2.0030    3.5955
+   n: 3
+y0 = 
+  RR_poly with properties:
+poly:     0.6710    2.2869  -21.5818  -62.0409   42.6886   81.5318
+roots:   -6.0000   -3.0000   -1.0000    1.2681    5.3235
+   n: 5
+test0 = 
+  RR_poly with properties:
+poly:    1.0e+03 *
+    0.0010    0.0200    0.1540    0.5760    1.0890    0.9720    0.3240
+roots:  Columns 1 through 4
+  -6.0000 - 0.0000i  -6.0000 + 0.0000i  -3.0000 - 0.0000i  -3.0000 + 0.0000i
+  Columns 5 through 6
+  -1.0000 - 0.0000i  -1.0000 + 0.0000i
+   n: 6
+residual0 =
+   1.1369e-13
+</pre>
+<h2 id="3">problem 2b</h2>
+<pre class="codeinput">b=RR_poly([2 -2 5 -5],1)
+a=RR_poly([1 -1 3 -3 6 -6],1)
+<span class="comment">% lets add some s=-20 poles on my f target</span>
+f1=RR_poly([-1 -1 -3 -3 -6 -6 -20],1)
+[x1,y1] = RR_diophantine(a,b,f1)
+test1=trim(a*x1+b*y1)
+residual1=norm(f1-test1)
+<span class="comment">% when we add 1 -20 pole</span>
+f2=RR_poly([-1 -1 -3 -3 -6 -6 -20 -20],1)
+[x2,y2] = RR_diophantine(a,b,f2)
+test2=trim(a*x2+b*y2)
+residual2=norm(f2-test2)
+<span class="comment">% when we add 2 -20 pole</span>
+f3=RR_poly([-1 -1 -3 -3 -6 -6 -20 -20 -20],1)
+[x3,y3] = RR_diophantine(a,b,f3)
+test3=trim(a*x3+b*y3)
+residual3=norm(f3-test3)
+<span class="comment">% when we add 3 -20 pole</span>
+f4=RR_poly([-1 -1 -3 -3 -6 -6 -20 -20 -20 -20],1)
+[x4,y4] = RR_diophantine(a,b,f4)
+test4=trim(a*x4+b*y4)
+residual4=norm(f4-test4)
+<span class="comment">% when we add 6 -20 pole</span>
+f5=RR_poly([-1 -1 -3 -3 -6 -6 -20 -20 -20 -20 -20 -20],1)
+[x5,y5] = RR_diophantine(a,b,f5)
+test5=trim(a*x5+b*y5)
+residual5=norm(f5-test5)
+<span class="comment">% we notice that only when we add about 6 -20 poles to our target that</span>
+<span class="comment">% the solution becomes proper with x = 6 &gt; y = 5 with a residual at</span>
+<span class="comment">% 2.5e-04 which is still close to zero.</span>
+</pre>
+<pre class="codeoutput">b = 
+  RR_poly with properties:
+poly:      1     0   -29     0   100
+roots:   -5.0000   -2.0000    2.0000    5.0000
+   n: 4
+a = 
+  RR_poly with properties:
+poly:      1     0   -46     0   369     0  -324
+roots:   -6.0000   -3.0000   -1.0000    1.0000    3.0000    6.0000
+   n: 6
+f1 = 
+  RR_poly with properties:
+poly:   Columns 1 through 6
+           1          40         554        3656       12609       22752
+  Columns 7 through 8
+       19764        6480
+roots:  Columns 1 through 4
+ -20.0000 + 0.0000i  -6.0000 - 0.0000i  -6.0000 + 0.0000i  -3.0000 - 0.0000i
+  Columns 5 through 7
+  -3.0000 + 0.0000i  -1.0000 - 0.0000i  -1.0000 + 0.0000i
+   n: 7
+x1 = 
+  RR_poly with properties:
+poly:   -15.7061  -55.0197  227.6742  550.3788
+roots:   -5.0006   -2.0023    3.4998
+   n: 3
+y1 = 
+  RR_poly with properties:
+poly:    1.0e+03 *
+    0.0157    0.0550   -0.4937   -1.4457    0.9353    1.8480
+roots:   -6.0000   -3.0000   -1.0000    1.2446    5.2524
+   n: 5
+test1 = 
+  RR_poly with properties:
+poly:    1.0e+04 *
+  Columns 1 through 7
+    0.0001    0.0040    0.0554    0.3656    1.2609    2.2752    1.9764
+  Column 8
+    0.6480
+roots:  Columns 1 through 4
+ -20.0000 + 0.0000i  -6.0000 + 0.0000i  -6.0000 + 0.0000i  -3.0000 - 0.0000i
+  Columns 5 through 7
+  -3.0000 + 0.0000i  -1.0000 + 0.0000i  -1.0000 + 0.0000i
+   n: 7
+residual1 =
+   4.2019e-11
+f2 = 
+  RR_poly with properties:
+poly:   Columns 1 through 6
+           1          60        1354       14736       85729      274932
+  Columns 7 through 9
+      474804      401760      129600
+roots:  Columns 1 through 4
+ -20.0000 + 0.0000i -20.0000 + 0.0000i  -6.0000 - 0.0000i  -6.0000 + 0.0000i
+  Columns 5 through 8
+  -3.0000 - 0.0000i  -3.0000 + 0.0000i  -1.0000 - 0.0000i  -1.0000 + 0.0000i
+   n: 8
+x2 = 
+  RR_poly with properties:
+poly:    1.0e+04 *
+   -0.0369   -0.1328    0.5104    1.2578
+roots:   -5.0004   -2.0018    3.4041
+   n: 3
+y2 = 
+  RR_poly with properties:
+poly:    1.0e+04 *
+    0.0369    0.1329   -1.1319   -3.3775    2.0554    4.2049
+roots:   -6.0000   -3.0000   -1.0000    1.2225    5.1768
+   n: 5
+test2 = 
+  RR_poly with properties:
+poly:    1.0e+05 *
+  Columns 1 through 7
+    0.0000    0.0006    0.0135    0.1474    0.8573    2.7493    4.7480
+  Columns 8 through 9
+    4.0176    1.2960
+roots:  Columns 1 through 4
+ -20.0001 + 0.0000i -19.9999 + 0.0000i  -6.0000 + 0.0000i  -6.0000 + 0.0000i
+  Columns 5 through 8
+  -3.0000 - 0.0000i  -3.0000 + 0.0000i  -1.0000 - 0.0000i  -1.0000 + 0.0000i
+   n: 8
+residual2 =
+   9.9130e-10
+f3 = 
+  RR_poly with properties:
+poly:   Columns 1 through 6
+           1          80        2554       41816      380449     1989512
+  Columns 7 through 10
+     5973444     9897840     8164800     2592000
+roots:  Columns 1 through 4
+ -20.0002 + 0.0000i -19.9999 - 0.0002i -19.9999 + 0.0002i  -6.0000 + 0.0000i
+  Columns 5 through 8
+  -6.0000 + 0.0000i  -3.0000 + 0.0000i  -3.0000 + 0.0000i  -1.0000 + 0.0000i
+  Column 9
+  -1.0000 + 0.0000i
+   n: 9
+x3 = 
+  RR_poly with properties:
+poly:    1.0e+05 *
+   -0.0871   -0.3217    1.1466    2.8848
+roots:   -5.0002   -2.0014    3.3092
+   n: 3
+y3 = 
+  RR_poly with properties:
+poly:    1.0e+05 *
+    0.0871    0.3225   -2.6016   -7.9115    4.5313    9.6059
+roots:   -6.0000   -3.0000   -1.0000    1.2018    5.0970
+   n: 5
+test3 = 
+  RR_poly with properties:
+poly:    1.0e+06 *
+  Columns 1 through 7
+    0.0000    0.0001    0.0026    0.0418    0.3804    1.9895    5.9734
+  Columns 8 through 10
+    9.8978    8.1648    2.5920
+roots:  Columns 1 through 4
+ -20.0047 + 0.0000i -19.9976 - 0.0041i -19.9976 + 0.0041i  -6.0000 + 0.0000i
+  Columns 5 through 8
+  -6.0000 + 0.0000i  -3.0000 - 0.0000i  -3.0000 + 0.0000i  -1.0000 - 0.0000i
+  Column 9
+  -1.0000 + 0.0000i
+   n: 9
+residual3 =
+   2.4721e-08
+f4 = 
+  RR_poly with properties:
+poly:   Columns 1 through 6
+           1         100        4154       92896     1216769     9598492
+  Columns 7 through 11
+    45763684   129366720   206121600   165888000    51840000
+roots:  Columns 1 through 4
+ -20.0065 + 0.0000i -20.0000 - 0.0065i -20.0000 + 0.0065i -19.9935 + 0.0000i
+  Columns 5 through 8
+  -6.0000 + 0.0000i  -6.0000 + 0.0000i  -3.0000 + 0.0000i  -3.0000 + 0.0000i
+  Columns 9 through 10
+  -1.0000 + 0.0000i  -1.0000 + 0.0000i
+   n: 10
+x4 = 
+  RR_poly with properties:
+poly:    1.0e+06 *
+    0.0000   -0.2064   -0.7813    2.5816    6.6408
+roots:   1.0e+05 *
+   -0.0001   -0.0000    0.0000    2.0639
+   n: 4
+y4 = 
+  RR_poly with properties:
+poly:    1.0e+07 *
+    0.0206    0.0785   -0.5994   -1.8585    1.0023    2.2034
+roots:   -6.0000   -3.0000   -1.0000    1.1825    5.0133
+   n: 5
+test4 = 
+  RR_poly with properties:
+poly:    1.0e+08 *
+  Columns 1 through 7
+    0.0000    0.0000    0.0000    0.0009    0.0122    0.0960    0.4576
+  Columns 8 through 11
+    1.2937    2.0612    1.6589    0.5184
+roots:  Columns 1 through 4
+ -20.0594 + 0.0000i -19.9998 - 0.0592i -19.9998 + 0.0592i -19.9409 + 0.0000i
+  Columns 5 through 8
+  -6.0000 - 0.0000i  -6.0000 + 0.0000i  -3.0000 + 0.0000i  -3.0000 + 0.0000i
+  Columns 9 through 10
+  -1.0000 + 0.0000i  -1.0000 + 0.0000i
+   n: 10
+residual4 =
+   6.9515e-07
+f5 = 
+  RR_poly with properties:
+poly:    1.0e+10 *
+  Columns 1 through 7
+    0.0000    0.0000    0.0000    0.0000    0.0007    0.0095    0.0916
+  Columns 8 through 13
+    0.5799    2.3686    6.0157    8.9136    6.8429    2.0736
+roots:  Columns 1 through 4
+ -20.0921 + 0.0000i -20.0457 - 0.0797i -20.0457 + 0.0797i -19.9540 - 0.0791i
+  Columns 5 through 8
+ -19.9540 + 0.0791i -19.9087 + 0.0000i  -6.0000 - 0.0000i  -6.0000 + 0.0000i
+  Columns 9 through 12
+  -3.0000 - 0.0000i  -3.0000 + 0.0000i  -1.0000 - 0.0000i  -1.0000 + 0.0000i
+   n: 12
+x5 = 
+  RR_poly with properties:
+poly:    1.0e+09 *
+    0.0000    0.0000    0.0000   -0.1172   -0.4649    1.3189    3.5608
+roots:   1.0e+02 *
+  Columns 1 through 4
+  -2.8954 - 4.2520i  -2.8954 + 4.2520i  -0.0500 + 0.0000i  -0.0200 + 0.0000i
+  Columns 5 through 6
+   0.0304 + 0.0000i   4.4304 + 0.0000i
+   n: 6
+y5 = 
+  RR_poly with properties:
+poly:    1.0e+10 *
+    0.0118    0.0472   -0.3207   -1.0348    0.4958    1.1744
+roots:   -6.0000   -3.0000   -1.0000    1.1480    4.8364
+   n: 5
+test5 = 
+  RR_poly with properties:
+poly:    1.0e+10 *
+  Columns 1 through 7
+    0.0000    0.0000    0.0000    0.0000    0.0007    0.0095    0.0916
+  Columns 8 through 13
+    0.5799    2.3686    6.0157    8.9136    6.8429    2.0736
+roots:  Columns 1 through 4
+ -20.5157 + 0.0000i -20.2466 - 0.4463i -20.2466 + 0.4463i -19.7426 - 0.4276i
+  Columns 5 through 8
+ -19.7426 + 0.4276i -19.5060 + 0.0000i  -6.0000 + 0.0000i  -6.0000 + 0.0000i
+  Columns 9 through 12
+  -3.0000 - 0.0000i  -3.0000 + 0.0000i  -1.0000 - 0.0000i  -1.0000 + 0.0000i
+   n: 12
+residual5 =
+   2.5212e-04
+</pre>
+<h2 id="4">problem 3</h2>
+<pre class="codeinput">
+<span class="comment">% to perform a matched z transform we want to replace each first order term</span>
+<span class="comment">% in the form of [s+a] by its digital equivalent of [1-(e^(-aT))*z^(-1))]</span>
+<span class="comment">% so the idea is we take a transfer function of the from of:</span>
+<span class="comment">% ts = [(s+b1)(s+b2)...(s+bm)]/[(s+a1)(s+a2)...(s+an)] =b(s)/a(s)</span>
+<span class="comment">% and turn it into its matched z transformation.</span>
+
+<span class="comment">% here are the tests given for the C2D_zoh function</span>
+bs=[1]; as=[1 2 1]; h=0.01;
+Gs=RR_tf(bs,as)
+[Gz]=RR_C2D_zoh(Gs,h)
+disp(<span class="string">'Corresponding Matlab solution:'</span>), c2d(tf(bs,as),h,<span class="string">'zoh'</span>)
+
+<span class="comment">% here are the tests given for the C2D_tustin function</span>
+ys=20*[1 1]; xs=[1 10]; h=0.01; Ds=RR_tf(ys,xs); omegac=sqrt(10);
+[Dz]=RR_C2D_tustin(Ds,h,omegac)
+disp(<span class="string">'Corresponding Matlab solution:'</span>)
+opt = c2dOptions(<span class="string">'Method'</span>,<span class="string">'tustin'</span>,<span class="string">'PrewarpFrequency'</span>,omegac);
+c2d(tf(ys,xs),h,opt)
+</pre>
+<pre class="codeoutput">Gs = 
+  RR_tf with properties:
+num:     1
+den:     1     2     1
+Continuous-time transfer function
+  m=0, n=2, n_r=n-m=2, strictly proper, K=     1
+  z:  p:    -1    -1
+p =
+     1
+Gz = 
+  RR_tf with properties:
+num:   1.0e-04 *
+    0.4967    0.4934
+den:    1.0000   -1.9801    0.9802
+Discrete-time transfer function with h=    0.0100
+  m=1, n=2, n_r=n-m=1, strictly proper, K=   4.9668e-05
+  z:   -0.9934
+  p:    0.9900    0.9901
+Corresponding Matlab solution:
+
+ans =
+ 
+  4.967e-05 z + 4.934e-05
+  -----------------------
+   z^2 - 1.98 z + 0.9802
+ 
+Sample time: 0.01 seconds
+Discrete-time transfer function.
+Dz = 
+  RR_tf with properties:
+num:   19.1428  -18.9523
+den:    1.0000   -0.9048
+Discrete-time transfer function with h=    0.0100
+  m=1, n=1, n_r=n-m=0, semiproper, K=   19.1428
+  z:    0.9900
+  p:    0.9048
+Corresponding Matlab solution:
+
+ans =
+ 
+  19.14 z - 18.95
+  ---------------
+    z - 0.9048
+ 
+Sample time: 0.01 seconds
+Discrete-time transfer function.
+</pre>
+<p class="footer">
+<br>
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2023b</a>
+<br>
+</p>
+</div>
+<!--
+##### SOURCE BEGIN #####
+%% Homework 1
+%% Problem 1
+
+% https://github.com/arrudafar
+
+%% Problem 2a
+ 
+% tf=G*D/(1+G*D)
+% G = b/a and D = y/x and so tf= b*y/(a*x + b*y)
+% so we get a(s)*x(s)+b(s)*y(s)=f(s)
+% Gs = [(s+2)(s-2)(s+5)(s-5)]/[(s+1)(s-1)(s+3)(s-3)(s+6)(s-6)] =b/a
+b=RR_poly([2 -2 5 -5],1)
+a=RR_poly([1 -1 3 -3 6 -6],1)
+% our desired target for system using controller that puts poles at 
+% s={-1,-1,-3,-3,-6,-6}
+f0=RR_poly([-1 -1 -3 -3 -6 -6],1)
+[x0,y0] = RR_diophantine(a,b,f0)
+test0=trim(a*x0+b*y0)
+residual0=norm(f0-test0)
+% by this solution we see the order of the x and y polys are: 
+% x = 3 < y = 5 making it so this solution is not proper and its 
+% corresponding residual is at 1.13e-13.
+
+%% problem 2b
+
+b=RR_poly([2 -2 5 -5],1)
+a=RR_poly([1 -1 3 -3 6 -6],1)
+% lets add some s=-20 poles on my f target
+f1=RR_poly([-1 -1 -3 -3 -6 -6 -20],1)
+[x1,y1] = RR_diophantine(a,b,f1)
+test1=trim(a*x1+b*y1)
+residual1=norm(f1-test1)
+% when we add 1 -20 pole
+f2=RR_poly([-1 -1 -3 -3 -6 -6 -20 -20],1)
+[x2,y2] = RR_diophantine(a,b,f2)
+test2=trim(a*x2+b*y2)
+residual2=norm(f2-test2)
+% when we add 2 -20 pole
+f3=RR_poly([-1 -1 -3 -3 -6 -6 -20 -20 -20],1)
+[x3,y3] = RR_diophantine(a,b,f3)
+test3=trim(a*x3+b*y3)
+residual3=norm(f3-test3)
+% when we add 3 -20 pole
+f4=RR_poly([-1 -1 -3 -3 -6 -6 -20 -20 -20 -20],1)
+[x4,y4] = RR_diophantine(a,b,f4)
+test4=trim(a*x4+b*y4)
+residual4=norm(f4-test4)
+% when we add 6 -20 pole
+f5=RR_poly([-1 -1 -3 -3 -6 -6 -20 -20 -20 -20 -20 -20],1)
+[x5,y5] = RR_diophantine(a,b,f5)
+test5=trim(a*x5+b*y5)
+residual5=norm(f5-test5)
+% we notice that only when we add about 6 -20 poles to our target that 
+% the solution becomes proper with x = 6 > y = 5 with a residual at 
+% 2.5e-04 which is still close to zero.
+
+%% problem 3
+
+% to perform a matched z transform we want to replace each first order term
+% in the form of [s+a] by its digital equivalent of [1-(e^(-aT))*z^(-1))]
+% so the idea is we take a transfer function of the from of:
+% ts = [(s+b1)(s+b2)...(s+bm)]/[(s+a1)(s+a2)...(s+an)] =b(s)/a(s)
+% and turn it into its matched z transformation.
+
+% here are the tests given for the C2D_zoh function
+bs=[1]; as=[1 2 1]; h=0.01; 
+Gs=RR_tf(bs,as)
+[Gz]=RR_C2D_zoh(Gs,h)
+disp('Corresponding Matlab solution:'), c2d(tf(bs,as),h,'zoh')
+
+% here are the tests given for the C2D_tustin function
+ys=20*[1 1]; xs=[1 10]; h=0.01; Ds=RR_tf(ys,xs); omegac=sqrt(10); 
+[Dz]=RR_C2D_tustin(Ds,h,omegac)
+disp('Corresponding Matlab solution:')
+opt = c2dOptions('Method','tustin','PrewarpFrequency',omegac); 
+c2d(tf(ys,xs),h,opt)
+
+##### SOURCE END #####
+-->
+</body>
+</html>
